@@ -2,13 +2,19 @@
 ---
 
 Скачать приложение
-####`git clone https://github.com/maksim4k1/My-React-App`
+```
+git clone https://github.com/maksim4k1/My-React-App
+```
 
 Запустить приложение
-####`npm start`
+```
+npm start
+```
 
 Перед запуском скачайте пакеты
-####`npm install`
+```
+npm install
+```
 
 Приложение откроется по ссылке http://localhost:3000
 
