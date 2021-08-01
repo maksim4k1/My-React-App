@@ -1,0 +1,27 @@
+.content{
+    margin: 30px 0 0;
+    display: flex;
+    gap: 30px;
+    -webkit-gap: 30px;
+}
+.image{
+    max-width: 350px;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 30px;
+}
+.info{
+    display: flex;
+    flex-flow: column;
+    gap: 20px;
+    -webkit-gap: 10px;
+}
+.username{
+    font-size: 32px;
+    font-weight: 700;
+}
+.link:hover{
+    text-decoration: underline;
+}

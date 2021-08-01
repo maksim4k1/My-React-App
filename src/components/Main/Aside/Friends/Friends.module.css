@@ -1,0 +1,15 @@
+.content{
+    margin: 30px 0 0;
+}
+.title{
+    margin: 0 0 10px;
+    font-size: 20px;
+    font-weight: 700;
+}
+.list{
+    width: 100%;
+    display: flex;
+    flex-flow: wrap;
+    row-gap: 10px;
+    column-gap: 35px;
+}

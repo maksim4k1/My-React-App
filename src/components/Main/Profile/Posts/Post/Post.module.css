@@ -1,0 +1,28 @@
+.post{
+    padding: 10px 15px;
+    display: flex;
+    border: 1px solid #d6d6d6;
+    border-radius: 15px;
+}
+.image{
+    width: 45px;
+    height: 45px;
+    margin: 0 15px 0 0;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    border: none;
+    background: yellow;
+}
+.content{
+    display: flex;
+    flex-flow: column;
+    gap: 5px;
+}
+.name{
+    font-size: 18px;
+    font-weight: 700;
+}
+.message{
+    font-size: 14px;
+}
