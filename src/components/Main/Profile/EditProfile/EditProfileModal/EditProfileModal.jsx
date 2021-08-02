@@ -1,4 +1,5 @@
 import React from "react";
+import { editProfileCreateAction } from "../../../../../redux/state";
 import style from "./EditProfileModal.module.css";
 import EditProfileModalInput from "./EditProfileModalInput/EditProfileModalInput";
 
@@ -6,12 +7,12 @@ function EditProfileModal(props) {
     function editProfile(event){
         event.preventDefault();
 
-        props.dispatch({type: "EDIT-PROFILE"});
+        props.dispatch(editProfileCreateAction());
     }
 
     function closeModal(event){
         if(event.target === event.currentTarget){
-            props.dispatch({type: "EDIT-PROFILE"});
+            props.dispatch(editProfileCreateAction());
         }
     }
 

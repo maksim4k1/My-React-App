@@ -1,15 +1,16 @@
 import React from "react";
+import { addMessageCreateAction, editInputValueCreateAction } from "../../../../../redux/state";
 import style from "./ChatForm.module.css";
 
 function ChatForm(props){
     const input = React.createRef();
     function addMessage(event){
         event.preventDefault();
-        props.dispatch({type: "ADD-MESSAGE", chatId: props.id, isMyMessage: true, message: input.current.value});
+        props.dispatch(addMessageCreateAction(props.id, true, input.current.value));
     }
 
     function editNewMessageText(){
-        props.dispatch({type: "EDIT-INPUT-VALUE", page: "dialogsPage", input: "newMessageText", value: input.current.value});
+        props.dispatch(editInputValueCreateAction("dialogsPage", "newMessageText", input.current.value));
     }
 
     // Return XML

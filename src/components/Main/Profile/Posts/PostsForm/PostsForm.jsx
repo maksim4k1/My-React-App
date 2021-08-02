@@ -1,15 +1,16 @@
 import React from "react";
+import { addPostCreateAction, editInputValueCreateAction } from "../../../../../redux/state";
 import style from "./PostsForm.module.css";
 
 function PostsForm (props) {
     const input = React.createRef();
     function sendPost(event){
         event.preventDefault();
-        props.dispatch({type: "ADD-POST", userId: props.id, text: input.current.value});
+        props.dispatch(addPostCreateAction(props.id, input.current.value));
     }
 
     function editNewPostText(){
-        props.dispatch({type: "EDIT-INPUT-VALUE", page: "profilePage", input: "newPostText", value: input.current.value});
+        props.dispatch(editInputValueCreateAction("profilePage", "newPostText", input.current.value));
     }
 
     // Return XML

@@ -1,11 +1,12 @@
 import React from 'react';
+import { editInputValueCreateAction } from '../../../../../../redux/state';
 import style from './EditProfileModalInput.module.css';
 
 function EditProfileModalInput(props){
     const input = React.createRef();
 
     function changeValue(){
-        props.dispatch({type: "EDIT-INPUT-VALUE", page: "profilePage", input: props.value, value: input.current.value});
+        props.dispatch(editInputValueCreateAction("profilePage", props.value, input.current.value));
     }
 
     // Return XML

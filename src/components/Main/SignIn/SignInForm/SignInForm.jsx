@@ -1,10 +1,11 @@
 import { NavLink } from 'react-router-dom';
+import { signInCreateAction } from '../../../../redux/state';
 import style from './SignInForm.module.css';
 import SignInInput from './SignInInput/SignInInput';
 
 function SignInForm(props){
     function signIn(event){
-        props.dispatch({type: "SIGN-IN"});
+        props.dispatch(signInCreateAction());
         if(props.signIn.signInError !== ""){
             event.preventDefault();
         }

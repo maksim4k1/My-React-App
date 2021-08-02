@@ -1,4 +1,24 @@
-// Class new user
+// Constants
+const FIND_MY_ACCOUNT = "FIND-MY-ACCOUNT";
+const CONVERT_FRIENDS = "CONVERT-FRIENDS";
+const ADD_POST = "ADD-POST";
+const EDIT_INPUT_VALUE = "EDIT-INPUT-VALUE";
+const CONVERT_PROFILES = "CONVERT-PROFILES";
+const CONVERT_POSTS = "CONVERT-POSTS";
+const CONVERT_NEW_PROFILE = "CONVERT-NEW-PROFILE";
+const RENDER_MY_PROFILE_INFO = "RENDER-MY-PROFILE-INFO";
+const TOGGLE_EDIT_PROFILE_MODAL = "TOGGLE-EDIT-PROFILE-MODAL";
+const EDIT_PROFILE = "EDIT-PROFILE";
+const ADD_MESSAGE = "ADD-MESSAGE";
+const CONVERT_MY_DIALOGS = "CONVERT-MY-DIALOGS";
+const CONVERT_CHATS = "CONVERT-CHATS";
+const SIGN_IN = "SIGN-IN";
+const CLEAR_SIGN_IN_INPUTS = "CLEAR-SIGN-IN-INPUTS";
+const SIGN_UP = "SIGN-UP";
+const CLEAR_SIGN_UP_INPUTS = "CLEAR-SIGN-UP-INPUTS";
+const FIND_USER = "FIND-USER";
+
+// Class new User
 class User{
     constructor(id, username, password, email, name){
         this.id = id;
@@ -13,7 +33,7 @@ class User{
     }
 }
 
-const store = {
+export const store = {
     // Render App
     renderApp(){},
     subscribe(observer){
@@ -22,9 +42,9 @@ const store = {
 
     // Users
     users: [
-        {id: 0, username: "maksim4k1", password: "1234", email: "maksim4k1@gmail.com", name: "Баженов Максим", deskription: "Здравствуйте, я начинающий Front-end разработчик. Мои ключевые навыки: JavaScript, React, HTML, CSS, GIT. Имел опыт работы с TypeScript, SASS/SCSS. Постоянно обучаюсь, и изучаю новые технологии.", hobby: "Web-разработка", website: "https://github.com/maksim4k1", image: "https://i.pinimg.com/originals/a7/3d/6e/a73d6e4ac85c6a822841e449b24c78e1.jpg" },
+        {id: 0, username: "maksim4k1", password: "1234", email: "maksim4k1@gmail.com", name: "Баженов Максим", deskription: "Здравствуйте, я Front-end разработчик. Мои ключевые навыки: JavaScript, React, HTML, CSS. Также имел опыт работы с Git, SASS/SCSS, TypeScript. Постоянно обучаюсь, и изучаю новые технологии.", hobby: "Web-разработка", website: "https://github.com/maksim4k1", image: "https://i.pinimg.com/originals/a7/3d/6e/a73d6e4ac85c6a822841e449b24c78e1.jpg" },
         {id: 1, username: "Sasha", password: "1234", email: "sasha@gmail.com", name: "Pak Sasha", deskription: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, nesciunt?", hobby: "Python-разработчик", website: "", image: "https://images.ctfassets.net/hrltx12pl8hq/3MbF54EhWUhsXunc5Keueb/60774fbbff86e6bf6776f1e17a8016b4/04-nature_721703848.jpg?fit=fill&w=480&h=270" },
-        {id: 2, username: "Ilya", password: "1234", email: "ilya@gmail.com", name: "Fzomin Ilya", deskription: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim, voluptatum?", hobby: "Android-разработка", website: "", image: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg" },
+        {id: 2, username: "Ilya", password: "1234", email: "ilya@gmail.com", name: "Fomin Ilya", deskription: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim, voluptatum?", hobby: "Android-разработка", website: "", image: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg" },
         {id: 3, username: "Isa", password: "1234", email: "isa@gmail.com", name: "Maratov Isa", deskription: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla, exercitationem.`, hobby: "Автомобили", website: "", image: "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" },
         {id: 4, username: "Tair", password: "1234", email: "tair@gmail.com", name: "Isaev Tair", deskription: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, nesciunt?", hobby: "Гулять", website: "", image: "https://images.ctfassets.net/hrltx12pl8hq/3MbF54EhWUhsXunc5Keueb/60774fbbff86e6bf6776f1e17a8016b4/04-nature_721703848.jpg?fit=fill&w=480&h=270" },
         {id: 5, username: "Stas", password: "1234", email: "stat@gmail.com", name: "Shishkin Stas", deskription: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, nesciunt?", hobby: "Смотреть аниме", website: "", image: "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" },
@@ -77,20 +97,21 @@ const store = {
         },
     },
 
+    // Dispatch
     dispatch(action){ // { type: "", value: "", ... }
-        if(action.type === "FIND-MY-ACCOUNT"){ // { type: "" }
+        if(action.type === FIND_MY_ACCOUNT){ // { type: "" }
             this.users.forEach(item => {
                 if(item.id === this.state.myAccount.id){
                     item.myAccount = true;
                 }
             });
-        } else if(action.type === "CONVERT-FRIENDS"){ // { type: "" }
+        } else if(action.type === CONVERT_FRIENDS){ // { type: "" }
             let thisPage = this.state.sidebar;
             for(let i = 0; i < 5; i++){
-                thisPage.friends.push(this.dispatch({type: "FIND-USER", id: this.state.myAccount.myFriends[i]}));
+                thisPage.friends.push(this.dispatch(findUserCreateAction(this.state.myAccount.myFriends[i])));
             }
             thisPage.friends.push({id: 0, username: "Add", image: "https://www.freepnglogos.com/uploads/plus-icon/add-plus-icon-28.png"});
-        } else if(action.type === "ADD-POST"){ // { type: "", userId: 0, text: "" }
+        } else if(action.type === ADD_POST){ // { type: "", userId: 0, text: "" }
             let thisPage = this.state.profilePage;
             if(action.text.trim() !== "" && typeof(action.userId) === "number"){
                 let profiles = thisPage.profiles;
@@ -99,22 +120,22 @@ const store = {
                     id: this.state.myAccount.id,
                     message: action.text
                 });
-                this.dispatch({type: "CONVERT-POSTS"});
+                this.dispatch(convertPostsCreateAction());
                 thisPage.newPostText = "";
 
                 // Rerender app
                 this.renderApp();
             }
-        } else if(action.type === "EDIT-INPUT-VALUE"){ // { type: "", page: "", input: "", value: "" }
+        } else if(action.type === EDIT_INPUT_VALUE){ // { type: "", page: "", input: "", value: "" }
             let thisPage = this.state[action.page]
             thisPage[action.input] = action.value;
 
             // Rerender app
             this.renderApp();
-        } else if(action.type === "CONVERT-PROFILES"){ // { type: "" }
+        } else if(action.type === CONVERT_PROFILES){ // { type: "" }
             let thisPage = this.state.profilePage;
             thisPage.profiles = this.users.map((element, index) => {
-                let user = this.dispatch({type: "FIND-USER", id: element.id});
+                let user = this.dispatch(findUserCreateAction(element.id));
                 let posts = thisPage.profiles[index];
                 let profile = {
                     profileInfo: user,
@@ -127,20 +148,20 @@ const store = {
                 }
                 return profile;
             });
-        } else if(action.type === "CONVERT-POSTS"){ // { type: "" }
+        } else if(action.type === CONVERT_POSTS){ // { type: "" }
             let thisPage = this.state.profilePage;
             thisPage.profiles.forEach(item => {
                 item.posts.forEach(element => {
-                    let user = this.dispatch({type: "FIND-USER", id: element.id});
+                    let user = this.dispatch(findUserCreateAction(element.id));
                     element.username = user.username;
                     element.image = user.image;
                 });
             });
-        } else if(action.type === "CONVERT-NEW-PROFILE"){ // { type: "", id: 0 }
+        } else if(action.type === CONVERT_NEW_PROFILE){ // { type: "", id: 0 }
             let thisPage = this.state.profilePage;
-            let user = this.dispatch({type: "FIND-USER", id: action.id});
+            let user = this.dispatch(findUserCreateAction(action.id));
             thisPage.profiles.push({profileInfo: user, posts: []});
-        } else if(action.type === "RENDER-MY-PROFILE-INFO"){ // { type: "" }
+        } else if(action.type === RENDER_MY_PROFILE_INFO){ // { type: "" }
             let thisPage = this.state.profilePage;
             const myAccount = this.users.find(item => item.id === this.state.myAccount.id);
             thisPage.profileUsername = myAccount.username;
@@ -148,14 +169,14 @@ const store = {
             thisPage.profileDeskription = myAccount.deskription;
             thisPage.profileHobby = myAccount.hobby;
             thisPage.profileWebsite = myAccount.website;
-        } else if(action.type === "TOGGLE-EDIT-PROFILE-MODAL"){ // { type: "", className: "" }
+        } else if(action.type === TOGGLE_EDIT_PROFILE_MODAL){ // { type: "", className: "" }
             let thisPage = this.state.profilePage;
             thisPage.profileClassName = action.className;
-            this.dispatch({type: "RENDER-MY-PROFILE-INFO"});
+            this.dispatch(renderMyProfileInfoCreateAction());
 
             // Rerender app
             this.renderApp();
-        } else if(action.type === "EDIT-PROFILE"){ // { type: "" }
+        } else if(action.type === EDIT_PROFILE){ // { type: "" }
             let thisPage = this.state.profilePage;
             let username = thisPage.profileUsername.trim();
             let name = thisPage.profileName.trim();
@@ -229,7 +250,7 @@ const store = {
                     username === myAccount.username &&
                     name === myAccount.name
                 ){
-                    this.dispatch({type: "TOGGLE-EDIT-PROFILE-MODAL", className: ""});
+                    this.dispatch(toggleEditModalCreateAction(""));
                 } else if(name === ""){
                     error = "Введите имя пользователя"
                 } else if(isHasForbiddenSymbolsInName === true){
@@ -239,26 +260,27 @@ const store = {
                 } else{
                     let isEditProfile = window.confirm("Вы уверены что хотите внести изменения?");
                     if(isEditProfile === true){
-                        this.dispatch({type: "FIND-USER", id: this.state.myAccount.id}).username = username;
-                        this.dispatch({type: "FIND-USER", id: this.state.myAccount.id}).name = name;
+                        this.dispatch(findUserCreateAction(this.state.myAccount.id)).username = username;
+                        this.dispatch(findUserCreateAction(this.state.myAccount.id)).name = name;
 
-                        this.dispatch({type: "TOGGLE-EDIT-PROFILE-MODAL", className: ""});
+                        this.dispatch(toggleEditModalCreateAction(""));
                     } else{
-                        this.dispatch({type: "TOGGLE-EDIT-PROFILE-MODAL", className: ""});
+                        this.dispatch(toggleEditModalCreateAction(""));
                     }
                     error = "";
                 }
             }
-            this.dispatch({type: "FIND-USER", id: this.state.myAccount.id}).deskription = deskription;
-            this.dispatch({type: "FIND-USER", id: this.state.myAccount.id}).hobby = hobby;
-            this.dispatch({type: "FIND-USER", id: this.state.myAccount.id}).website = website;
+            this.dispatch(findUserCreateAction(this.state.myAccount.id)).deskription = deskription;
+            this.dispatch(findUserCreateAction(this.state.myAccount.id)).hobby = hobby;
+            this.dispatch(findUserCreateAction(this.state.myAccount.id)).website = website;
             thisPage.profileError = error;
 
-            this.dispatch({type: "RENDER-MY-PROFILE-INFO"});
+            this.dispatch(convertPostsCreateAction());
+            this.dispatch(renderMyProfileInfoCreateAction());
 
             // Rerender app
             this.renderApp();
-        } else if(action.type === "ADD-MESSAGE"){ // { type: "", chatId: 0, isMyMessage: true, message: "" }
+        } else if(action.type === ADD_MESSAGE){ // { type: "", chatId: 0, isMyMessage: true, message: "" }
             let thisPage = this.state.dialogsPage;
             if(action.message.trim() !== "" && typeof(action.chatId) === "number" && typeof(action.isMyMessage) === "boolean"){
                 let index = thisPage.dialogs.findIndex(item => item.id === action.chatId);
@@ -272,12 +294,12 @@ const store = {
                 // Rerender app
                 this.renderApp();
             }
-        } else if(action.type === "CONVERT-MY-DIALOGS"){ // { type: "" }
+        } else if(action.type === CONVERT_MY_DIALOGS){ // { type: "" }
             let thisPage = this.state.dialogsPage;
             thisPage.dialogs = this.state.myAccount.myDialogs.map(element  => {
-                return this.dispatch({type: "FIND-USER", id: element});
+                return this.dispatch(findUserCreateAction(element));
             });
-        } else if(action.type === "CONVERT-CHATS"){ // { type: "" }
+        } else if(action.type === CONVERT_CHATS){ // { type: "" }
             let thisPage = this.state.dialogsPage;
             thisPage.chats = thisPage.dialogs.map(item => {
                 return ({
@@ -289,7 +311,7 @@ const store = {
                     ]
                 });
             });
-        } else if(action.type === "SIGN-IN"){ // { type: "" }
+        } else if(action.type === SIGN_IN){ // { type: "" }
             let thisPage = this.state.signInPage;
             let login = thisPage.signInLogin.trim();
             let password = thisPage.signInPassword.trim();
@@ -308,7 +330,7 @@ const store = {
                 } else{
                     this.users[this.state.myAccount.id].myAccount = false;
                     this.state.myAccount.id = user.id;
-                    this.dispatch({type: "FIND-MY-ACCOUNT"});
+                    this.dispatch(findMyAccountCreateAction());
 
                     error = "";
                     thisPage.signInLogin = "";
@@ -319,7 +341,7 @@ const store = {
 
             // Rerender app
             this.renderApp();
-        } else if(action.type === "CLEAR-SIGN-IN-INPUTS"){ // { type: "" }
+        } else if(action.type === CLEAR_SIGN_IN_INPUTS){ // { type: "" }
             let thisPage = this.state.signInPage
             thisPage.signInLogin = "";
             thisPage.signInPassword = "";
@@ -327,7 +349,7 @@ const store = {
 
             // Rerender app
             this.renderApp();
-        } else if(action.type === "SIGN-UP"){ // { type: "" }
+        } else if(action.type === SIGN_UP){ // { type: "" }
             let thisPage = this.state.signUpPage;
             let login = thisPage.signUpLogin.trim();
             let email = thisPage.signUpEmail.trim();
@@ -491,8 +513,8 @@ const store = {
                     this.users.push(new User(this.users.length, login, password, email, name));
 
                     this.state.myAccount.id = this.users[this.users.length - 1].id;
-                    this.dispatch({type: "FIND-MY-ACCOUNT"});
-                    this.dispatch({type: "CONVERT-NEW-PROFILE", id: this.users[this.users.length - 1].id});
+                    this.dispatch(findMyAccountCreateAction());
+                    this.dispatch({type: CONVERT_NEW_PROFILE, id: this.users[this.users.length - 1].id});
 
                     error = "";
                     thisPage.signUpLogin = "";
@@ -506,7 +528,7 @@ const store = {
 
             // Rerender app
             this.renderApp();
-        } else if(action.type === "CLEAR-SIGN-UP-INPUTS"){ // { type: "" }
+        } else if(action.type === CLEAR_SIGN_UP_INPUTS){ // { type: "" }
             let thisPage = this.state.signUpPage;
             thisPage.signUpLogin = "";
             thisPage.signUpEmail = "";
@@ -517,18 +539,120 @@ const store = {
 
             // Rerender app
             this.renderApp();
-        } else if(action.type === "FIND-USER"){ // { type: "", id: 0 }
+        } else if(action.type === FIND_USER){ // { type: "", id: 0 }
             return this.users.find(item => item.id === action.id);
         }
     },
 }
 
-store.dispatch({type: "FIND-MY-ACCOUNT"});
-store.dispatch({type: "CONVERT-FRIENDS"});
-store.dispatch({type: "CONVERT-PROFILES"});
-store.dispatch({type: "CONVERT-POSTS"});
-store.dispatch({type: "RENDER-MY-PROFILE-INFO"});
-store.dispatch({type: "CONVERT-MY-DIALOGS"});
-store.dispatch({type: "CONVERT-CHATS"});
+// Render Actions
+export function findMyAccountCreateAction(){
+    return{
+        type: FIND_MY_ACCOUNT
+    };
+}
+export function convertFriendsCreateAction(){
+    return{
+        type: CONVERT_FRIENDS
+    };
+}
+export function addPostCreateAction(id, text){
+    return{
+        type: ADD_POST,
+        userId: id,
+        text: text
+    };
+}
+export function editInputValueCreateAction(page, input, value){
+    return{
+        type: EDIT_INPUT_VALUE,
+        page: page,
+        input: input,
+        value: value
+    };
+}
+export function convertNewProfileCreateAction(id){
+    return{
+        type: CONVERT_NEW_PROFILE,
+        id: id
+    };
+}
+export function convertProfilesCreateAction(){
+    return{
+        type: CONVERT_PROFILES
+    };
+}
+export function convertPostsCreateAction(){
+    return{
+        type: CONVERT_POSTS
+    };
+}
+export function renderMyProfileInfoCreateAction(){
+    return{
+        type: RENDER_MY_PROFILE_INFO
+    };
+}
+export function toggleEditModalCreateAction(className){
+    return{
+        type: TOGGLE_EDIT_PROFILE_MODAL,
+        className: className
+    };
+}
+export function editProfileCreateAction(){
+    return{
+        type: EDIT_PROFILE
+    };
+}
+export function addMessageCreateAction(chatId, isMyMessage, message){
+    return{
+        type: ADD_MESSAGE,
+        chatId: chatId,
+        isMyMessage: isMyMessage,
+        message: message
+    };
+}
+export function convertMyDialogsCreateAction(){
+    return{
+        type: CONVERT_MY_DIALOGS
+    };
+}
+export function convertChatsCreateAction(){
+    return{
+        type: CONVERT_CHATS
+    };
+}
+export function signInCreateAction(){
+    return{
+        type: SIGN_IN
+    };
+}
+export function clearSignInInputsCreateAction(){
+    return{
+        type: CLEAR_SIGN_IN_INPUTS
+    };
+}
+export function signUpCreateAction(){
+    return{
+        type: SIGN_UP
+    };
+}
+export function clearSignUpInputsCreateAction(){
+    return{
+        type: CLEAR_SIGN_UP_INPUTS
+    };
+}
+export function findUserCreateAction(id){
+    return{
+        type: FIND_USER,
+        id: id
+    };
+}
 
-export default store;
+// Activate functions
+store.dispatch(findMyAccountCreateAction());
+store.dispatch(convertFriendsCreateAction());
+store.dispatch(convertProfilesCreateAction());
+store.dispatch(convertPostsCreateAction());
+store.dispatch(renderMyProfileInfoCreateAction());
+store.dispatch(convertMyDialogsCreateAction());
+store.dispatch(convertChatsCreateAction());

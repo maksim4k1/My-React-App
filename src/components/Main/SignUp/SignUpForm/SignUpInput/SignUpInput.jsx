@@ -1,11 +1,12 @@
 import React from 'react';
+import { editInputValueCreateAction } from '../../../../../redux/state';
 import style from './SignUpInput.module.css';
 
 function SignUpInput(props){
     const input = React.createRef();
 
     function changeValue(){
-        props.dispatch({type: "EDIT-INPUT-VALUE", page: "signUpPage", input: props.value, value: input.current.value});
+        props.dispatch(editInputValueCreateAction("signUpPage", props.value, input.current.value));
     }
 
     // Return XML

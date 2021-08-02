@@ -1,11 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { signUpCreateAction } from '../../../../redux/state';
 import style from './SignUpForm.module.css';
 import SignUpInput from './SignUpInput/SignUpInput';
 
 function SignUpForm(props){
     function SignUp(event){
-        props.dispatch({type: "SIGN-UP"});
+        props.dispatch(signUpCreateAction());
         if(props.signUp.signUpError !== ""){
             event.preventDefault();
         }

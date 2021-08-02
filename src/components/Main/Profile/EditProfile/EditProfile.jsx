@@ -2,10 +2,11 @@ import React from "react";
 import style from "./EditProfile.module.css";
 import modalStyle from "./EditProfileModal/EditProfileModal.module.css";
 import EditProfileModal from "./EditProfileModal/EditProfileModal";
+import { toggleEditModalCreateAction } from "../../../../redux/state";
 
 function EditProfile(props) {
     function openModal(){
-        props.dispatch({type: "TOGGLE-EDIT-PROFILE-MODAL", className: modalStyle.openModal});
+        props.dispatch(toggleEditModalCreateAction(modalStyle.openModal));
     }
 
     // Return XML
