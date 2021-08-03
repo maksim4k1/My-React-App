@@ -1,5 +1,5 @@
 import React from "react";
-import { editProfileCreateAction } from "../../../../../redux/state";
+import { editProfileCreateAction } from "../../../../../redux/profile-reducer";
 import style from "./EditProfileModal.module.css";
 import EditProfileModalInput from "./EditProfileModalInput/EditProfileModalInput";
 

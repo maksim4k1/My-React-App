@@ -1,5 +1,5 @@
 import React from 'react';
-import { editInputValueCreateAction } from '../../../../../../redux/state';
+import { editInputValueCreateAction } from '../../../../../../redux/other-reducer';
 import style from './EditProfileModalInput.module.css';
 
 function EditProfileModalInput(props){

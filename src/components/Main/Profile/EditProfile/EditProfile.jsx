@@ -2,11 +2,11 @@ import React from "react";
 import style from "./EditProfile.module.css";
 import modalStyle from "./EditProfileModal/EditProfileModal.module.css";
 import EditProfileModal from "./EditProfileModal/EditProfileModal";
-import { toggleEditModalCreateAction } from "../../../../redux/state";
+import { toggleEditProfileModalCreateAction } from "../../../../redux/profile-reducer";
 
 function EditProfile(props) {
     function openModal(){
-        props.dispatch(toggleEditModalCreateAction(modalStyle.openModal));
+        props.dispatch(toggleEditProfileModalCreateAction(modalStyle.openModal));
     }
 
     // Return XML

@@ -1,5 +1,6 @@
 import React from "react";
-import { addPostCreateAction, editInputValueCreateAction } from "../../../../../redux/state";
+import { addPostCreateAction } from "../../../../../redux/profile-reducer";
+import { editInputValueCreateAction } from "../../../../../redux/other-reducer";
 import style from "./PostsForm.module.css";
 
 function PostsForm (props) {

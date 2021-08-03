@@ -1,5 +1,6 @@
 import React from "react";
-import { addMessageCreateAction, editInputValueCreateAction } from "../../../../../redux/state";
+import { addMessageCreateAction } from "../../../../../redux/dialogs-reducer";
+import { editInputValueCreateAction } from "../../../../../redux/other-reducer";
 import style from "./ChatForm.module.css";
 
 function ChatForm(props){

@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { signUpCreateAction } from '../../../../redux/state';
+import { signUpCreateAction } from '../../../../redux/signUp-reducer';
 import style from './SignUpForm.module.css';
 import SignUpInput from './SignUpInput/SignUpInput';
 

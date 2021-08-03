@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { signInCreateAction } from '../../../../redux/state';
+import { signInCreateAction } from '../../../../redux/signIn-reducer';
 import style from './SignInForm.module.css';
 import SignInInput from './SignInInput/SignInInput';
 
